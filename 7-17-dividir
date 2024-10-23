@@ -1,4 +1,46 @@
-codigo prolog
+% ===============================================
+% Autor: Tania Tavera Alanis
+% Fecha: 23 de octubre de 2024
+% Descripción: 
+% ===============================================
+----------Codigo de c#-----------
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        var list = new List<int> { 1, 2, 3, 4, 5 };
+        int n = 3; // Longitud de la primera parte
+        var (firstPart, secondPart) = Split(list, n);
+        
+        Console.WriteLine("Primera parte: " + string.Join(", ", firstPart));
+        Console.WriteLine("Segunda parte: " + string.Join(", ", secondPart));
+    }
+
+    static (List<int> firstPart, List<int> secondPart) Split(List<int> list, int n)
+    {
+        var firstPart = new List<int>();
+        var secondPart = new List<int>();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (i < n)
+            {
+                firstPart.Add(list[i]);
+            }
+            else
+            {
+                secondPart.Add(list[i]);
+            }
+        }
+
+        return (firstPart, secondPart);
+    }
+}
+
+------codigo prolog----------
 % Divide una lista en dos partes.
 % La longitud de la primera parte está dada por el segundo argumento.
 split(L, 0, [], L).
