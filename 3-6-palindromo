@@ -1,3 +1,10 @@
+% ===============================================
+% Autor: Tania Tavera Alanis
+% Fecha: 23 de octubre de 2024
+% Descripción: 
+% ===============================================
+
+% -------- Código en C# (comentado) ------------
 class Program
 {
     static void Main()
@@ -34,7 +41,7 @@ class Program
         return true; // Son iguales
     }
 }
-codigo prolog 
+% -------- Código en Prolog(comentado) ------------
 % Verifica si una lista es un palíndromo.
 % Una lista es un palíndromo si es igual a su inversa.
 palindrome(L) :- reverse_list(L, L).
