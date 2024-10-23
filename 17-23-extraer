@@ -1,0 +1,4 @@
+% Extrae un número dado de elementos aleatorios de una lista.
+% Utiliza un generador de números aleatorios y elimina los elementos seleccionados.
+rnd_select(_, 0, []).
+rnd_select(L, N, [X|R]) :- length(L, Len), random(1, Len, I), element_at(X, L, I), delete(L, X, L1), N1 is N - 1, rnd_select(L1, N1, R).
