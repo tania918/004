@@ -1,4 +1,4 @@
-Codigo en prolog
+% -------- Código en prolog(comentado) ------------
 % Elimina duplicados consecutivos de una lista.
 % Caso base: una lista vacía se mantiene vacía.
 compress([], []).
