@@ -1,4 +1,63 @@
-codigo prolog 
+% ===============================================
+% Autor: Tania Tavera Alanis
+% Fecha: 23 de octubre de 2024
+% Descripción: 
+% ===============================================
+----------Codigo de c#-----------
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        var list = new List<int> { 1, 2, 3, 4, 5 };
+        int n = 2; // Número de lugares a rotar
+        var rotatedList = Rotate(list, n);
+        
+        Console.WriteLine("Lista rotada: " + string.Join(", ", rotatedList));
+    }
+
+    static List<int> Rotate(List<int> list, int n)
+    {
+        if (list.Count == 0) return list; // Manejar caso de lista vacía
+
+        // Calcular la longitud y el índice efectivo de rotación
+        int len = list.Count;
+        int n1 = n % len;
+
+        // Dividir la lista en dos partes
+        var (firstPart, secondPart) = Split(list, n1);
+        
+        // Combinar las partes en el orden correcto
+        var result = new List<int>(secondPart);
+        result.AddRange(firstPart);
+
+        return result;
+    }
+
+    static (List<int> firstPart, List<int> secondPart) Split(List<int> list, int n)
+    {
+        var firstPart = new List<int>();
+        var secondPart = new List<int>();
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (i < n)
+            {
+                firstPart.Add(list[i]);
+            }
+            else
+            {
+                secondPart.Add(list[i]);
+            }
+        }
+
+        return (firstPart, secondPart);
+    }
+}
+
+----------codigo prolog---------- 
 % Rota una lista N lugares a la izquierda.
 % Utiliza la longitud de la lista para manejar rotaciones mayores que la longitud.
 rotate(L, N, R) :- length(L, Len), N1 is N mod Len, split(L, N1, L1, L2), append(L2, L1, R).
