@@ -1,0 +1,5 @@
+codigo prolog
+% Divide una lista en dos partes.
+% La longitud de la primera parte está dada por el segundo argumento.
+split(L, 0, [], L).
+split([H|T], N, [H|L1], L2) :- N > 0, N1 is N - 1, split(T, N1, L1, L2).
