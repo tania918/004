@@ -1,4 +1,36 @@
-Codigo en prolog
+% ===============================================
+% Autor: Tania Tavera Alanis
+% Fecha: 23 de octubre de 2024
+% Descripción: 
+% ===============================================
+----------Codigo de c#-----------
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        var list = new List<int> { 1, 2, 3, 4 };
+        var duplicatedList = Dupli(list);
+        Console.WriteLine("Lista duplicada: " + string.Join(", ", duplicatedList));
+    }
+
+    static List<int> Dupli(List<int> list)
+    {
+        var result = new List<int>();
+        foreach (var item in list)
+        {
+            // Duplicar el elemento y agregarlo a la lista de resultados
+            result.Add(item);
+            result.Add(item);
+        }
+        return result;
+    }
+}
+
+
+---------Codigo en prolog-----------
 % Duplica los elementos de una lista.
 % Caso base: la lista vacía se mantiene vacía.
 dupli([], []).
