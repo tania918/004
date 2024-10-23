@@ -1,3 +1,54 @@
+% ===============================================
+% Autor: Tania Tavera Alanis
+% Fecha: 23 de octubre de 2024
+% Descripción: Programa en Prolog que calcule el 
+              numero de elementos de una lista
+%              Se incluye una versión comentada
+%              en C# para referencia.
+% ===============================================
+
+% -------- Código en C# (comentado) ------------
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        int number = 28;
+        List<int> factors = PrimeFactors(number);
+        Console.WriteLine($"Factores primos de {number}: {string.Join(", ", factors)}");
+    }
+
+    static List<int> PrimeFactors(int n)
+    {
+        List<int> factors = new List<int>();
+        PrimeFactors(n, 2, factors);
+        return factors;
+    }
+
+    static void PrimeFactors(int n, int f, List<int> factors)
+    {
+        if (n <= 1) return;
+        
+        if (n % f == 0)
+        {
+            factors.Add(f);
+            PrimeFactors(n / f, f, factors);
+        }
+        else if (f * f < n)
+        {
+            int nextF = NextFactor(f);
+            PrimeFactors(n, nextF, factors);
+        }
+    }
+
+    static int NextFactor(int f)
+    {
+        return f == 2 ? 3 : f + 2;
+    }
+}
+
 % Encuentra los factores primos de un número entero positivo.
 prime_factors(N, L) :- N > 1, prime_factors(N, 2, L).
 
