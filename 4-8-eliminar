@@ -1,3 +1,43 @@
+% ===============================================
+% Autor: Tania Tavera Alanis
+% Fecha: 23 de octubre de 2024
+% Descripción: 
+% ===============================================
+
+% -------- Código en C# (comentado) ------------
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        var list = new List<int> { 1, 1, 2, 2, 3, 3, 3, 4, 4, 5 };
+        var compressedList = Compress(list);
+        Console.WriteLine("Lista comprimida: " + string.Join(", ", compressedList));
+    }
+
+    static List<int> Compress(List<int> list)
+    {
+        var result = new List<int>();
+        if (list.Count == 0)
+        { return result; // Caso base: lista vacía
+        }
+
+        result.Add(list[0]); // Agregar el primer elemento
+
+        for (int i = 1; i < list.Count; i++)
+        {
+            // Solo agregar el elemento si es diferente al anterior
+            if (list[i] != list[i - 1])
+            {
+                result.Add(list[i]);
+            }
+        }
+
+        return result;
+    }
+}
 % -------- Código en prolog(comentado) ------------
 % Elimina duplicados consecutivos de una lista.
 % Caso base: una lista vacía se mantiene vacía.
