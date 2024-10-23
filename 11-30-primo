@@ -1,3 +1,30 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine(IsPrime(2)); // true
+        Console.WriteLine(IsPrime(3)); // true
+        Console.WriteLine(IsPrime(4)); // false
+        Console.WriteLine(IsPrime(5)); // true
+    }
+
+    static bool IsPrime(int p)
+    {
+        if (p <= 1) return false;
+        if (p == 2 || p == 3) return true;
+        if (p % 2 == 0) return false; // Exclude even numbers greater than 2
+        return !HasFactor(p, 3);
+    }
+
+    static bool HasFactor(int n, int l)
+    {
+        if (n % l == 0) return true;
+        if (l * l >= n) return false; // Stop if l^2 is greater than or equal to n
+        return HasFactor(n, l + 2); // Check next odd number
+    }
+}
 % Verifica si un número entero dado es primo.
 is_prime(2).
 is_prime(3).
