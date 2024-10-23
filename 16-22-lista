@@ -1,0 +1,5 @@
+% Crea una lista con todos los enteros dentro de un rango dado.
+% Caso base: cuando el inicio y el final son iguales.
+range(I, I, [I]).
+% Caso recursivo: agrega el inicio a la lista y continúa con el siguiente número.
+range(I, K, [I|R]) :- I < K, I1 is I + 1, range(I1, K, R).
