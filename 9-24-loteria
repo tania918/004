@@ -1,3 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        int n = 5; // Número de elementos a seleccionar
+        int m = 50; // Rango máximo
+        var randomNumbers = Lotto(n, m);
+        
+        Console.WriteLine("Números aleatorios seleccionados: " + string.Join(", ", randomNumbers));
+    }
+
+    static List<int> Lotto(int n, int m)
+    {
+        // Generar el rango de números
+        var range = Enumerable.Range(1, m).ToList();
+        // Seleccionar N números aleatorios del rango
+        return RndSelect(range, n);
+    }
+
+    static List<int> RndSelect(List<int> list, int n)
+    {
+        var random = new Random();
+        return list.OrderBy(x => random.Next()).Take(n).ToList();
+    }
+}
+
 % Extrae N números aleatorios de un rango dado.
 % Utiliza la función range para generar la lista de números y luego selecciona aleatoriamente.
 lotto(N, M, L) :- range(1, M, R), rnd_select(R, N, L).
