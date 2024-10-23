@@ -1,3 +1,12 @@
+===============================================
+% Autor: Tania Tavera Alanis
+% Fecha: 23 de octubre de 2024
+% Descripción: Programa en Prolog que determina 
+%              el último elemento de una lista.
+%              Se incluye una versión comentada
+%              en C# para referencia.
+% ===============================================
+
 using System;
 % using System.Collections.Generic;
 % 
