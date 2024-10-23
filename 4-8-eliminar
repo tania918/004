@@ -1,0 +1,10 @@
+Codigo en prolog
+% Elimina duplicados consecutivos de una lista.
+% Caso base: una lista vacía se mantiene vacía.
+compress([], []).
+% Si queda un solo elemento, no hay duplicados.
+compress([X], [X]).
+% Caso recursivo: si el primer y segundo elemento son iguales, ignora el primero.
+compress([X,X|T], R) :- compress([X|T], R).
+% Si el primer y segundo elemento son distintos, conserva el primero.
+compress([X,Y|T], [X|R]) :- X \= Y, compress([Y|T], R).
