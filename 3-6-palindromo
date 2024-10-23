@@ -1,0 +1,40 @@
+class Program
+{
+    static void Main()
+    {
+        var list = new List<int> { 1, 2, 3, 2, 1 };
+        bool isPalindrome = IsPalindrome(list);
+        Console.WriteLine("¿La lista es un palíndromo? " + isPalindrome);
+    }
+
+    static bool IsPalindrome(List<int> list)
+    {
+        // Crear una copia de la lista y revertirla
+        var reversedList = new List<int>(list);
+        reversedList.Reverse();
+        
+        // Comparar la lista original con la lista revertida
+        return AreEqual(list, reversedList);
+    }
+
+    static bool AreEqual(List<int> list1, List<int> list2)
+    {
+        if (list1.Count != list2.Count)
+        {
+            return false; // Si las longitudes son diferentes, no son iguales
+        }
+
+        for (int i = 0; i < list1.Count; i++)
+        {
+            if (list1[i] != list2[i])
+            {
+                return false; // Si algún elemento es diferente, no son iguales
+            }
+        }
+        return true; // Son iguales
+    }
+}
+codigo prolog 
+% Verifica si una lista es un palíndromo.
+% Una lista es un palíndromo si es igual a su inversa.
+palindrome(L) :- reverse_list(L, L).
