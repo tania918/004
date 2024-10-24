@@ -1,3 +1,35 @@
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Definir la expresión lógica
+        Func<bool, bool, bool> expression = (A, B) => A && B; // Ejemplo: A AND B
+
+        // Generar la tabla de verdad
+        TruthTable(expression);
+    }
+
+    public static void TruthTable(Func<bool, bool, bool> expr)
+    {
+        Console.WriteLine("A B | Expr");
+        Console.WriteLine("-------");
+
+        // Iterar sobre todas las combinaciones de valores de A y B
+        for (int i = 0; i <= 1; i++)
+        {
+            bool A = Convert.ToBoolean(i);
+            for (int j = 0; j <= 1; j++)
+            {
+                bool B = Convert.ToBoolean(j);
+                bool result = expr(A, B);
+                Console.WriteLine($"{(A ? 1 : 0)} {B} | {Convert.ToInt32(result)}");
+            }
+        }
+    }
+}
+
 % Genera una tabla de verdad para una expresión lógica en dos variables.
 % A y B son las variables lógicas y Expr es la expresión lógica que se evalúa.
 table(A, B, Expr) :- write(A), write(' '), write(B), write(' '), call(Expr), nl, fail.
