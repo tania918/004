@@ -1,3 +1,31 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var list = new List<int> { 1, 2, 3, 4 }; // Lista original
+        int elementToInsert = 99; // Elemento a insertar
+        int position = 2; // Posición para insertar (1-based)
+
+        var newList = InsertAt(elementToInsert, list, position);
+        
+        Console.WriteLine(string.Join(", ", newList));
+    }
+
+    static List<T> InsertAt<T>(T element, List<T> list, int position)
+    {
+        if (position <= 0)
+        {
+            throw new ArgumentException("El índice debe ser mayor que 0.");
+        }
+
+        var resultList = new List<T>(list);
+        resultList.Insert(position - 1, element); // Ajustamos para el índice basado en cero
+        return resultList;
+    }
+}
 % Inserta un elemento en una lista en la posición dada.
 % El índice K debe ser mayor que 0.
 insert_at(X, L, 1, [X|L]).
