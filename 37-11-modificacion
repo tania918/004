@@ -1,3 +1,73 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    public static void Main(string[] args)
+    {
+        var elements = new List<string> { "a", "a", "b", "c", "c", "c", "d" };
+        var encoded = EncodeModified(elements);
+
+        foreach (var item in encoded)
+        {
+            Console.WriteLine(item);
+        }
+    }
+
+    public static List<object> EncodeModified(List<string> list)
+    {
+        var encoded = Encode(list);
+        return Modify(encoded);
+    }
+
+    private static List<List<object>> Encode(List<string> list)
+    {
+        var encoded = new List<List<object>>();
+        int count = 1;
+
+        for (int i = 1; i <= list.Count; i++)
+        {
+            if (i < list.Count && list[i] == list[i - 1])
+            {
+                count++;
+            }
+            else
+            {
+                if (count > 1)
+                {
+                    encoded.Add(new List<object> { count, list[i - 1] });
+                }
+                else
+                {
+                    encoded.Add(new List<object> { 1, list[i - 1] });
+                }
+                count = 1;
+            }
+        }
+
+        return encoded;
+    }
+
+    private static List<object> Modify(List<List<object>> encoded)
+    {
+        var result = new List<object>();
+
+        foreach (var pair in encoded)
+        {
+            if ((int)pair[0] == 1)
+            {
+                result.Add(pair[1]);
+            }
+            else
+            {
+                result.Add(pair);
+            }
+        }
+
+        return result;
+    }
+}
 % Modifica la codificación Run-Length de una lista.
 % Si un elemento no tiene duplicados, se mantiene sin empaquetar.
 encode_modified(L, R) :- encode(L, Enc), modify(Enc, R).
