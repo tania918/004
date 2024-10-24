@@ -1,3 +1,61 @@
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        // Generar tabla de verdad para cada operación
+        Console.WriteLine("Tabla de verdad para AND");
+        TruthTable(And);
+        Console.WriteLine("\nTabla de verdad para OR");
+        TruthTable(Or);
+        Console.WriteLine("\nTabla de verdad para NAND");
+        TruthTable(Nand);
+        Console.WriteLine("\nTabla de verdad para NOR");
+        TruthTable(Nor);
+        Console.WriteLine("\nTabla de verdad para XOR");
+        TruthTable(Xor);
+        Console.WriteLine("\nTabla de verdad para Implicación");
+        TruthTable(Impl);
+        Console.WriteLine("\nTabla de verdad para Equivalencia");
+        TruthTable(Equ);
+    }
+
+    public static void TruthTable(Func<bool, bool, bool> expr)
+    {
+        Console.WriteLine("A B | Expr");
+        Console.WriteLine("-------");
+
+        // Iterar sobre todas las combinaciones de valores de A y B
+        for (int i = 0; i <= 1; i++)
+        {
+            bool A = Convert.ToBoolean(i);
+            for (int j = 0; j <= 1; j++)
+            {
+                bool B = Convert.ToBoolean(j);
+                bool result = expr(A, B);
+                Console.WriteLine($"{(A ? 1 : 0)} {B} | {Convert.ToInt32(result)}");
+            }
+        }
+    }
+
+    public static bool And(bool A, bool B) => A && B;
+
+    public static bool Or(bool A, bool B) => A || B;
+
+    public static bool Nand(bool A, bool B) => !(A && B);
+
+    public static bool Nor(bool A, bool B) => !(A || B);
+
+    public static bool Xor(bool A, bool B) => A ^ B;
+
+    public static bool Impl(bool A, bool B) => !A || B;
+
+    public static bool Equ(bool A, bool B) => (A && B) || (!A && !B);
+}
+
+
+
 % Utiliza operadores lógicos para definir expresiones y generar tablas de verdad.
 % Definición de los operadores básicos AND, OR, NAND, NOR, XOR, IMPLICACIÓN, EQUIVALENCIA.
 and(A, B) :- A, B.
