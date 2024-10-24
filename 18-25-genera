@@ -1,3 +1,39 @@
+using System;
+using System.Collections.Generic;
+
+public class Program
+{
+    public static void Main()
+    {
+        List<int> inputList = new List<int> { 1, 2, 3, 4, 5 };
+        List<int> result = RandomPermutation(inputList);
+        
+        Console.WriteLine(string.Join(", ", result));
+    }
+
+    public static List<T> RandomPermutation<T>(List<T> list)
+    {
+        Random random = new Random();
+        List<T> result = new List<T>(list);
+        int n = result.Count;
+
+        // Genera la permutación aleatoria utilizando el algoritmo de Fisher-Yates
+        for (int i = n - 1; i > 0; i--)
+        {
+            int j = random.Next(0, i + 1); // Selecciona un índice aleatorio
+            // Intercambia los elementos
+            T temp = result[i];
+            result[i] = result[j];
+            result[j] = temp;
+        }
+
+        return result;
+    }
+}
+
+
+
 % Genera una permutación aleatoria de los elementos de una lista.
 % Utiliza la selección aleatoria para construir la permutación.
 rnd_permu(L, P) :- length(L, Len), rnd_select(L, Len, P).
+
