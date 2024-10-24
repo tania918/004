@@ -1,4 +1,36 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    public static void Main(string[] args)
+    {
+        var elements = new List<int> { 1, 2, 3, 4, 5 };
+        int k = 3; // El índice K debe ser mayor que 0
+
+        if (k > 0 && k <= elements.Count)
+        {
+            int removedElement = RemoveAt(elements, k);
+            Console.WriteLine($"Elemento eliminado: {removedElement}");
+            Console.WriteLine($"Lista resultante: [{string.Join(", ", elements)}]");
+        }
+        else
+        {
+            Console.WriteLine("El índice K debe estar entre 1 y el tamaño de la lista.");
+        }
+    }
+
+    public static int RemoveAt(List<int> list, int k)
+    {
+        int index = k - 1; // Ajustamos el índice a base cero
+        int removedElement = list[index];
+        list.RemoveAt(index);
+        return removedElement;
+    }
+}
+
 % Elimina el k-ésimo elemento de una lista.
 % El índice K debe ser mayor que 0.
 remove_at(X, [X|T], 1, T).
 remove_at(X, [H|T], K, [H|R]) :- K > 1, K1 is K - 1, remove_at(X, T, K1, R).
+
