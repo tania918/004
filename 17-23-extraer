@@ -1,3 +1,41 @@
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        var list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; // Lista original
+        int numberToSelect = 3; // Número de elementos a seleccionar
+
+        var selectedItems = RandomSelect(list, numberToSelect);
+        Console.WriteLine("Elementos seleccionados: " + string.Join(", ", selectedItems));
+    }
+
+    static List<T> RandomSelect<T>(List<T> list, int n)
+    {
+        if (n <= 0) return new List<T>();
+
+        var random = new Random();
+        var result = new List<T>();
+
+        var itemsToSelect = Math.Min(n, list.Count); // Asegurarse de no seleccionar más elementos de los que hay
+
+        var tempList = new List<T>(list); // Copia de la lista original para manipular
+
+        for (int i = 0; i < itemsToSelect; i++)
+        {
+            int index = random.Next(tempList.Count); // Selección aleatoria
+            result.Add(tempList[index]); // Agregar elemento seleccionado
+            tempList.RemoveAt(index); // Eliminar el elemento de la lista
+        }
+
+        return result;
+    }
+}
+
 % Extrae un número dado de elementos aleatorios de una lista.
 % Utiliza un generador de números aleatorios y elimina los elementos seleccionados.
 rnd_select(_, 0, []).
