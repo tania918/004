@@ -1,0 +1,3 @@
+codigo en prolog
+% Determina los factores primos con su multiplicidad.
+prime_factors_mult(N, L) :- prime_factors(N, F), encode(F, L).
