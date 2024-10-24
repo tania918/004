@@ -1,3 +1,30 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int start = 1; // Inicio del rango
+        int end = 5;   // Fin del rango
+
+        List<int> numbers = Range(start, end);
+        Console.WriteLine(string.Join(", ", numbers));
+    }
+
+    static List<int> Range(int start, int end)
+    {
+        var result = new List<int>();
+
+        for (int i = start; i <= end; i++)
+        {
+            result.Add(i);
+        }
+
+        return result;
+    }
+}
+
 % Crea una lista con todos los enteros dentro de un rango dado.
 % Caso base: cuando el inicio y el final son iguales.
 range(I, I, [I]).
