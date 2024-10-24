@@ -1,3 +1,25 @@
+using System;
+
+public class Program
+{
+    public static void Main()
+    {
+        int x = 48;
+        int y = 18;
+        int gcd = GCD(x, y);
+        
+        Console.WriteLine($"El MCD de {x} y {y} es {gcd}");
+    }
+
+    public static int GCD(int x, int y)
+    {
+        if (y == 0)
+            return x;
+        
+        return GCD(y, x % y);
+    }
+}
+
 % Calcula el máximo común divisor usando el algoritmo de Euclides.
 gcd(X, 0, X) :- X > 0.
 gcd(X, Y, G) :- Y > 0, R is X mod Y, gcd(Y, R, G).
