@@ -1,3 +1,45 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int n = 3; // Cambia este valor para generar el código Gray de N bits
+        List<string> grayCodes = GenerateGrayCode(n);
+        
+        foreach (var code in grayCodes)
+        {
+            Console.WriteLine(code);
+        }
+    }
+
+    static List<string> GenerateGrayCode(int n)
+    {
+        if (n == 1)
+        {
+            return new List<string> { "0", "1" };
+        }
+
+        var previousGrayCodes = GenerateGrayCode(n - 1);
+        var result = new List<string>();
+
+        // Agregar '0' al principio de cada código de la primera mitad
+        foreach (var code in previousGrayCodes)
+        {
+            result.Add("0" + code);
+        }
+
+        // Agregar '1' al principio de cada código de la segunda mitad (invertida)
+        for (int i = previousGrayCodes.Count - 1; i >= 0; i--)
+        {
+            result.Add("1" + previousGrayCodes[i]);
+        }
+
+        return result;
+    }
+}
+
 % Genera el código Gray de N bits.
 % https://es.wikipedia.org/wiki/Código_Gray
 % La secuencia de código Gray es una secuencia binaria en la que dos valores consecutivos difieren en solo un bit.
