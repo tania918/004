@@ -1,4 +1,8 @@
-codigo en c#
+===============================================
+% Autor: Tania Tavera Alanis
+% Fecha: 23 de octubre de 2024
+% ===============================================
+-------codigo en c#--------------
 using System;
 using System.Collections.Generic;
 using System.Linq;
