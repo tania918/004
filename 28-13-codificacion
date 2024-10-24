@@ -1,4 +1,87 @@
-% Codifica directamente una lista usando codificación Run-Length.
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    public static void Main(string[] args)
+    {
+        var frequencies = new List<(char symbol, int frequency)>
+        {
+            ('a', 5),
+            ('b', 9),
+            ('c', 12),
+            ('d', 13),
+            ('e', 16),
+            ('f', 45)
+        };
+
+        var huffmanTree = BuildHuffmanTree(frequencies);
+        PrintHuffmanCodes(huffmanTree, "");
+    }
+
+    public static Node BuildHuffmanTree(List<(char symbol, int frequency)> frequencies)
+    {
+        var priorityQueue = new SortedSet<Node>(new NodeComparer());
+
+        foreach (var (symbol, frequency) in frequencies)
+        {
+            priorityQueue.Add(new Node(symbol, frequency));
+        }
+
+        while (priorityQueue.Count > 1)
+        {
+            var left = priorityQueue.First();
+            priorityQueue.Remove(left);
+            var right = priorityQueue.First();
+            priorityQueue.Remove(right);
+
+            var combinedFrequency = left.Frequency + right.Frequency;
+            var parent = new Node('\0', combinedFrequency, left, right);
+            priorityQueue.Add(parent);
+        }
+
+        return priorityQueue.First();
+    }
+
+    public static void PrintHuffmanCodes(Node node, string code)
+    {
+        if (node.Left == null && node.Right == null)
+        {
+            Console.WriteLine($"{node.Symbol}: {code}");
+            return;
+        }
+
+        PrintHuffmanCodes(node.Left, code + "0");
+        PrintHuffmanCodes(node.Right, code + "1");
+    }
+}
+
+public class Node
+{
+    public char Symbol { get; }
+    public int Frequency { get; }
+    public Node Left { get; }
+    public Node Right { get; }
+
+    public Node(char symbol, int frequency, Node left = null, Node right = null)
+    {
+        Symbol = symbol;
+        Frequency = frequency;
+        Left = left;
+        Right = right;
+    }
+}
+
+public class NodeComparer : IComparer<Node>
+{
+    public int Compare(Node x, Node y)
+    {
+        return x.Frequency.CompareTo(y.Frequency);
+    }
+}
+
+Codifica directamente una lista usando codificación Run-Length.
 % Cuenta cuántos elementos consecutivos son iguales.
 encode_direct([], []).
 encode_direct([X|Xs], [[N,X]|R]) :- count(X, [X|Xs], N, Rest), encode_direct(Rest, R).
