@@ -1,3 +1,50 @@
+codigo en c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        int N = 100; // Cambia este valor según sea necesario
+        var result = PrimeFactorsMult(N);
+        foreach (var pair in result)
+        {
+            Console.WriteLine($"Factor: {pair.Item1}, Multiplicidad: {pair.Item2}");
+        }
+    }
+
+    static List<(int, int)> PrimeFactorsMult(int N)
+    {
+        var primeFactors = PrimeFactors(N);
+        var encoded = Encode(primeFactors);
+        return encoded;
+    }
+
+    static List<int> PrimeFactors(int N)
+    {
+        var factors = new List<int>();
+        for (int i = 2; i <= N; i++)
+        {
+            while (N % i == 0)
+            {
+                factors.Add(i);
+                N /= i;
+            }
+        }
+        return factors;
+    }
+
+    static List<(int, int)> Encode(List<int> factors)
+    {
+        var grouped = factors.GroupBy(x => x)
+                             .Select(g => (g.Key, g.Count()))
+                             .ToList();
+        return grouped;
+    }
+}
+
 codigo en prolog
 % Determina los factores primos con su multiplicidad.
 prime_factors_mult(N, L) :- prime_factors(N, F), encode(F, L).
